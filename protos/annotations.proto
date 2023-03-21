@@ -1,0 +1,40 @@
+syntax = "proto2";
+package proto2cli;
+
+option go_package = "github.com/panyam/proto2cli/protoc-gen-cli";
+option java_package = "com.panyam.proto2cli.protocgencli";
+
+import "google/protobuf/descriptor.proto";
+
+extend google.protobuf.ServiceOptions {
+  /**
+   * Override any CLI help text for a particular message
+   */
+  optional string SvcDesc = 1071;
+}
+
+extend google.protobuf.MessageOptions {
+  /**
+   * Override any CLI help text for a particular message
+   */
+  optional string MsgDesc = 1071;
+}
+
+extend google.protobuf.FieldOptions {
+  /**
+   * An optional flag to be used for this field.  Eg "--my-flag-name"
+   * If a flag is not provided than the fqn of the field is used
+   */
+  optional string FlagName = 1071;
+
+  /**
+   * Optional short flag to be used for this command - eg "-m"
+   */
+  optional string ShortFlagName = 1072;
+
+  /**
+   * Override any CLI help text for a particular field.
+   * Otherwise the documentation comment is used.
+   */
+  optional string FieldDesc = 1073;
+}
