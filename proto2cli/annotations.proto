@@ -6,20 +6,28 @@ import "google/protobuf/descriptor.proto";
 option go_package = "github.com/panyam/proto2cli/gen/go/proto2cli/annotations;annotations";
 option java_package = "com.panyam.proto2cli";
 
+extend google.protobuf.FileOptions {
+  // Top level specific specs for CLI
+  optional FileOptions file_options = 1071;
+}
+
 extend google.protobuf.ServiceOptions {
-  // Service specific specs for CLI
-  optional CLIServiceOptions service_options = 1071;
+  // Service specific specs for 
+  optional ServiceOptions service_options = 1071;
 }
 
 extend google.protobuf.MessageOptions {
-  // CLI spec per method
-  optional CLIMethodOptions method_options = 1071;
+  //  spec per method
+  optional MethodOptions method_options = 1071;
 }
 
-message CLIServiceOptions {
+message FileOptions {
 }
 
-message CLIMethodOptions {
+message ServiceOptions {
+}
+
+message MethodOptions {
   // An optional flag to be used for this field.  Eg "--my-flag-name"
   // If a flag is not provided than the fqn of the field is used
   optional string FlagName = 1;
