@@ -3,7 +3,7 @@ package proto2cli.cli;
 
 import "google/protobuf/descriptor.proto";
 
-option go_package = "github.com/panyam/proto2cli/gen/go/proto2cli/annotations;annotations";
+option go_package = "github.com/panyam/proto2cli/gen/go/proto2cli/cli/annotations;annotations";
 option java_package = "com.panyam.proto2cli";
 
 extend google.protobuf.ServiceOptions {
