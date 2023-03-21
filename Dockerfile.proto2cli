@@ -1,0 +1,19 @@
+FROM golang as builder
+
+ENV GOOS=linux GOARCH=amd64 CGO_ENABLED=0
+
+RUN go install github.com/panyam/proto2cli/protoc-gen-cli # @v8.1.0+incompatible
+# Note, the Docker images must be built for amd64. If the host machine architecture is not amd64
+# you need to cross-compile the binary and move it into /go/bin.
+RUN bash -c 'find /go/bin/${GOOS}_${GOARCH}/ -mindepth 1 -maxdepth 1 -exec mv {} /go/bin \;'
+
+FROM scratch
+
+LABEL "build.buf.plugins.runtime_library_versions.0.name"="github.com/panyam/proto2cli"
+LABEL "build.buf.plugins.runtime_library_versions.0.version"="v0.0.1+incompatible"
+LABEL "build.buf.plugins.runtime_library_versions.1.name"="google.golang.org/protobuf"
+LABEL "build.buf.plugins.runtime_library_versions.1.version"="v1.27.1"
+
+COPY --from=builder /go/bin /
+
+ENTRYPOINT ["/protoc-gen-cli"]
