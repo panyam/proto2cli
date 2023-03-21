@@ -7,34 +7,26 @@ option go_package = "github.com/panyam/proto2cli/gen/go/proto2cli/annotations;an
 option java_package = "com.panyam.proto2cli";
 
 extend google.protobuf.ServiceOptions {
-  /*
-   * Override any CLI help text for a particular message
-   */
-  optional string SvcDesc = 1071;
+  // Service specific specs for CLI
+  optional ServiceOptions service_options = 1071;
 }
 
 extend google.protobuf.MessageOptions {
-  /*
-   * Override any CLI help text for a particular message
-   */
-  optional string MsgDesc = 1071;
+  // CLI spec per method
+  optional MethodOptions method_options = 1071;
 }
 
-extend google.protobuf.FieldOptions {
-  /*
-   * An optional flag to be used for this field.  Eg "--my-flag-name"
-   * If a flag is not provided than the fqn of the field is used
-   */
-  optional string FlagName = 1071;
+message ServiceOptions {
+}
 
-  /*
-   * Optional short flag to be used for this command - eg "-m"
-   */
-  optional string ShortFlagName = 1072;
+message MethodOptions {
+  // An optional flag to be used for this field.  Eg "--my-flag-name"
+  // If a flag is not provided than the fqn of the field is used
+  optional string FlagName = 1;
 
-  /*
-   * Override any CLI help text for a particular field.
-   * Otherwise the documentation comment is used.
-   */
-  optional string FieldDesc = 1073;
+  // Optional short flag to be used for this command - eg "-m"
+  optional string ShortFlagName = 2;
+
+  // Optional help text to overide the comment doc with.
+  optional string HelpText = 3;
 }
