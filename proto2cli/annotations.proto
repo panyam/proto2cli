@@ -8,18 +8,18 @@ option java_package = "com.panyam.proto2cli";
 
 extend google.protobuf.ServiceOptions {
   // Service specific specs for CLI
-  optional ServiceOptions service_options = 1071;
+  optional CLIServiceOptions service_options = 1071;
 }
 
 extend google.protobuf.MessageOptions {
   // CLI spec per method
-  optional MethodOptions method_options = 1071;
+  optional CLIMethodOptions method_options = 1071;
 }
 
-message ServiceOptions {
+message CLIServiceOptions {
 }
 
-message MethodOptions {
+message CLIMethodOptions {
   // An optional flag to be used for this field.  Eg "--my-flag-name"
   // If a flag is not provided than the fqn of the field is used
   optional string FlagName = 1;
