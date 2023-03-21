@@ -1,10 +1,10 @@
 syntax = "proto2";
 package proto2cli;
 
-option go_package = "github.com/panyam/proto2cli/protoc-gen-cli";
-option java_package = "com.panyam.proto2cli.protocgencli";
-
 import "google/protobuf/descriptor.proto";
+
+option go_package = "github.com/panyam/proto2cli/gen/go/proto2cli/annotations;annotations";
+option java_package = "com.panyam.proto2cli";
 
 extend google.protobuf.ServiceOptions {
   /*
