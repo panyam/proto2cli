@@ -6,9 +6,17 @@ The CLI generated has a few artifacts:
 1. A python library for the main cli module
 2. A library that can be incorporated as extended cli options in a larger cli binary
 
+## Installing
+
+To install from the main repo:
+
+```
+go get -u github.com/panyam/proto2cli/cmd/protoc-gen-cli
+```
+
 ## Development
 
-`make install` installs the plugin locally and you can use it in buf or via the protoc binary as a plugin when processing protobuf files.
+`make install` installs the plugin locally (from the local copy of the repo) and you can use it in buf or via the protoc binary as a plugin when processing protobuf files.
 
 ## Future Work
 
