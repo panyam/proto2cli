@@ -63,3 +63,21 @@ message Album {
   // Date released on
   google.protobuf.Timestamp release_date = 8;
 }
+
+// A record label company.   This entity is the owner of albums as they produce and release them.
+// Note unlike the Album entity the Label does not contain a (repeated) field of all albums it
+// owns.   This is because the way the albums are added to or removed from a Label's collection
+// is via the API.
+message Label {
+  google.protobuf.Timestamp created_at = 1;
+  google.protobuf.Timestamp updated_at = 2;
+
+  // ID of this label
+  string id = 3;
+
+  // Name of this record label company (eg, "Virgin Records")
+  string name = 4;
+
+  // When this company was established
+  google.protobuf.Timestamp established_date = 5;
+}
